@@ -1,0 +1,36 @@
+⚡ FAST DIAGNOSTIC MODE ACTIVE: Running a subset grid for verification.
+
+🏁 Starting Grid Benchmark comparison on http://localhost:3001...
+Grid parameters:
+  - Methods: Stateful (DB Check) and Stateless (JWT Check)
+  - Durations: [5, 10] seconds
+  - Connections (VUs): [10, 50, 100, 250]
+
+|----------------------------------------------------------------------------------------------------------------------------------|
+| Method     | VUs        | Time (s)   | RPS        | Mean (ms)  | p90 (ms)   | p99 (ms)   | Errors     | CPU %      | Mem (MB)   |
+|----------------------------------------------------------------------------------------------------------------------------------|
+| Stateful   | 10         | 5          | 639        | 15.2       | 16         | 18         | 0          | 3.5%       | 157        |
+| Stateless  | 10         | 5          | 8117       | 0.7        | 2          | 5          | 0          | 85.5%      | 157        |
+| Stateful   | 50         | 5          | 3061       | 15.8       | 17         | 30         | 0          | 35.6%      | 158        |
+| Stateless  | 50         | 5          | 8946       | 5.1        | 12         | 21         | 0          | 81.3%      | 162        |
+| Stateful   | 100        | 5          | 5397       | 18.0       | 29         | 34         | 0          | 38.9%      | 164        |
+| Stateless  | 100        | 5          | 8022       | 11.9       | 29         | 48         | 0          | 81.8%      | 166        |
+| Stateful   | 250        | 5          | 8742       | 28.1       | 33         | 42         | 0          | 36.3%      | 175        |
+| Stateless  | 250        | 5          | 8830       | 27.7       | 83         | 119        | 0          | 82.1%      | 181        |
+| Stateful   | 10         | 10         | 645        | 15.1       | 16         | 17         | 0          | 6.6%       | 181        |
+| Stateless  | 10         | 10         | 9014       | 0.6        | 2          | 5          | 0          | 90.2%      | 181        |
+| Stateful   | 50         | 10         | 3045       | 15.9       | 17         | 30         | 0          | 4.7%       | 181        |
+| Stateless  | 50         | 10         | 9272       | 4.9        | 12         | 22         | 0          | 91.3%      | 181        |
+| Stateful   | 100        | 10         | 5576       | 17.5       | 29         | 32         | 0          | 36.9%      | 182        |
+| Stateless  | 100        | 10         | 8868       | 10.8       | 26         | 42         | 0          | 90.9%      | 181        |
+| Stateful   | 250        | 10         | 8950       | 27.5       | 32         | 38         | 0          | 41.8%      | 182        |
+| Stateless  | 250        | 10         | 9006       | 27.2       | 86         | 120        | 0          | 89.2%      | 182        |
+|----------------------------------------------------------------------------------------------------------------------------------|
+
+💾 Writing raw results to JSON file...
+✍️ Writing comparative Markdown Report to benchmark_grid_report.md...
+
+🎉 DIAGNOSTICS COMPLETED SUCCESSFULLY!
+📈 Results written to:
+  - [JSON Data]: benchmark_grid_results.json
+  - [Markdown Table]: benchmark_grid_report.md
