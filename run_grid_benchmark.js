@@ -281,6 +281,13 @@ function generateReports() {
         JSON.stringify({ generatedAt: new Date().toISOString(), runs }, null, 2)
     );
 
+    console.log('📊 Writing results to CSV file...');
+    let csv = 'Method,Connections (VUs),Duration (s),Throughput (RPS),Mean Latency (ms),p90 Latency (ms),p99 Latency (ms),Errors,Avg CPU %,Avg Memory (MB)\n';
+    for (const r of runs) {
+        csv += `${r.method.toUpperCase()},${r.connections},${r.duration},${r.rps.toFixed(0)},${r.meanLatency.toFixed(1)},${r.p90Latency.toFixed(0)},${r.p99Latency.toFixed(0)},${r.errors},${r.avgCpu.toFixed(1)},${r.avgMem.toFixed(0)}\n`;
+    }
+    fs.writeFileSync(path.join(__dirname, 'benchmark_grid_results.csv'), csv);
+
     console.log('✍️ Writing comparative Markdown Report to benchmark_grid_report.md...');
     let md = `# Authentication Grid Benchmark Diagnostics Report\n\n`;
     md += `*Generated on: ${new Date().toUTCString()}*\n`;
@@ -359,6 +366,7 @@ function generateReports() {
     console.log(`\n🎉 DIAGNOSTICS COMPLETED SUCCESSFULLY!`);
     console.log(`📈 Results written to:`);
     console.log(`  - [JSON Data]: benchmark_grid_results.json`);
+    console.log(`  - [CSV Spreadsheet]: benchmark_grid_results.csv`);
     console.log(`  - [Markdown Table]: benchmark_grid_report.md\n`);
 }
 
