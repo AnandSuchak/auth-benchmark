@@ -1,0 +1,14 @@
+{
+  "name": "auth-benchmark",
+  "version": "1.0.0",
+  "description": "Benchmark Stateful database authentication vs Stateless JWT authentication",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "autocannon": "^7.15.0",
+    "express": "^4.19.2",
+    "jsonwebtoken": "^9.0.2"
+  }
+}
