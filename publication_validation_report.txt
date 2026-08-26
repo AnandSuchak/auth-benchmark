@@ -1,11 +1,11 @@
 ================================================================================
 PUBLICATION VALIDATION BENCHMARK REPORT
 ================================================================================
-Generated on: Wed, 26 Aug 2026 09:52:01 GMT
+Generated on: Wed, 26 Aug 2026 11:22:44 GMT
 Server URL: http://localhost:3001
 Session Store Mock Latency: 10 ms (Stateful) | 0 ms (JWT)
-Test runs per condition: 2 runs (shuffled randomized execution)
-Warm-up: 1s | Measurement: 2s | Cooldown: 1s
+Test runs per condition: 5 runs (shuffled randomized execution)
+Warm-up: 15s | Measurement: 30s | Cooldown: 3s
 Pipelining: 1 (independent HTTP/1.1 requests)
 
 --------------------------------------------------------------------------------
@@ -13,23 +13,30 @@ Pipelining: 1 (independent HTTP/1.1 requests)
 --------------------------------------------------------------------------------
 A. MEAN LATENCY CROSSOVER
 - Expected interval: ~50–60 concurrent connections
-- Observed interval: N/A connections
-
+- Observed interval: 150–200 connections
+- Interpolated crossover point: 198.25 connections
 
 B. THROUGHPUT CROSSOVER (RPS)
 - Expected interval: ~80–90 concurrent connections
-- Observed interval: N/A connections
-
+- Observed interval: 150–200 connections
+- Interpolated crossover point: 198.01 connections
 
 --------------------------------------------------------------------------------
 2. HIGH CONCURRENCY VALIDATION (250 USER LOAD)
 --------------------------------------------------------------------------------
-- 250 connections matrix was not executed in this session.
+
+- Stateful sessions Throughput Advantage: 1.21x (Stateful RPS vs JWT RPS)
+- JWT tail-latency penalty (p99 ratio): 4.92x (JWT p99 vs Stateful p99)
+
+- Variability Analysis at 250 connections:
+  * JWT p99 Coefficient of Variation (CV): 68.06%
+  * Stateful p99 Coefficient of Variation (CV): 4.53%
+
 
 --------------------------------------------------------------------------------
 3. ERROR AND TIMEOUT DIAGNOSTICS
 --------------------------------------------------------------------------------
-Total client errors recorded: 0
+Total client errors recorded: 367
 Total request timeouts recorded: 0
 
 --------------------------------------------------------------------------------
@@ -37,20 +44,38 @@ Total request timeouts recorded: 0
 --------------------------------------------------------------------------------
 Conns | Method   | Mean RPS   | RPS 95% CI         | Mean Latency | Latency 95% CI     | Mean p99   | Errors  | CV_p99
 ---------------------------------------------------------------------------------------------------------------
-10    | JWT      |      10130 | [8885, 11375]      |       0.3 ms | [0.0, 0.6]         |     2.0 ms |       0 | 0.8%
-10    | STATEFUL |        638 | [609, 666]         |      15.2 ms | [14.7, 15.7]       |    17.1 ms |       0 | 0.6%
-40    | JWT      |       9984 | [9171, 10797]      |       3.5 ms | [3.4, 3.7]         |     6.5 ms |       0 | 10.3%
-40    | STATEFUL |       2521 | [2260, 2781]       |      15.4 ms | [13.8, 17.0]       |    26.4 ms |       0 | 20.5%
+10    | JWT      |       9861 | [9625, 10096]      |       0.3 ms | [0.3, 0.3]         |     3.1 ms |       0 | 13.7%
+10    | STATEFUL |        645 | [644, 647]         |      15.1 ms | [15.1, 15.1]       |    17.3 ms |       0 | 0.9%
+40    | JWT      |       9471 | [8894, 10048]      |       3.8 ms | [3.5, 4.1]         |    12.7 ms |       0 | 30.7%
+40    | STATEFUL |       2498 | [2478, 2518]       |      15.6 ms | [15.5, 15.7]       |    30.1 ms |       0 | 1.4%
+50    | JWT      |       9757 | [9562, 9951]       |       4.6 ms | [4.5, 4.7]         |    12.3 ms |       0 | 16.7%
+50    | STATEFUL |       3042 | [2975, 3110]       |      16.0 ms | [15.7, 16.4]       |    31.2 ms |       0 | 1.9%
+60    | JWT      |       9536 | [9163, 9909]       |       5.8 ms | [5.5, 6.0]         |    18.1 ms |       0 | 18.7%
+60    | STATEFUL |       3670 | [3583, 3758]       |      15.9 ms | [15.5, 16.3]       |    30.9 ms |       0 | 1.3%
+70    | JWT      |       9469 | [9331, 9606]       |       6.9 ms | [6.8, 7.0]         |    20.4 ms |       0 | 11.1%
+70    | STATEFUL |       4124 | [4012, 4237]       |      16.6 ms | [16.1, 17.0]       |    32.0 ms |       0 | 1.2%
+80    | JWT      |       9343 | [9072, 9613]       |       8.1 ms | [7.8, 8.3]         |    22.5 ms |       0 | 4.9%
+80    | STATEFUL |       4494 | [4336, 4652]       |      17.4 ms | [16.7, 18.0]       |    32.6 ms |       0 | 1.4%
+90    | JWT      |       9418 | [9197, 9639]       |       9.1 ms | [8.9, 9.3]         |    25.5 ms |       0 | 9.3%
+90    | STATEFUL |       5095 | [4942, 5247]       |      17.3 ms | [16.7, 17.8]       |    32.6 ms |       0 | 1.5%
+100   | JWT      |       9662 | [9273, 10050]      |       9.9 ms | [9.4, 10.3]        |    23.7 ms |       0 | 11.7%
+100   | STATEFUL |       5442 | [5103, 5781]       |      18.0 ms | [16.9, 19.1]       |    33.2 ms |       0 | 2.5%
+150   | JWT      |       9395 | [9296, 9494]       |      15.5 ms | [15.3, 15.6]       |    43.2 ms |       0 | 11.9%
+150   | STATEFUL |       7262 | [6889, 7635]       |      20.3 ms | [19.2, 21.3]       |    34.6 ms |       0 | 3.9%
+200   | JWT      |       9104 | [8370, 9838]       |      21.5 ms | [19.6, 23.5]       |    62.1 ms |       0 | 24.6%
+200   | STATEFUL |       9193 | [8557, 9829]       |      21.4 ms | [19.9, 22.8]       |    35.0 ms |       0 | 1.4%
+250   | JWT      |       9115 | [8834, 9396]       |      35.0 ms | [25.3, 44.6]       |   177.3 ms |      73 | 68.1%
+250   | STATEFUL |      11052 | [10116, 11989]     |      22.3 ms | [20.4, 24.2]       |    36.0 ms |       0 | 4.5%
 
 ================================================================================
 PUBLICATION VALIDATION CHECKLIST
 ================================================================================
-[PASS] All requested benchmark conditions completed (8/8)
-[PASS] No unexpected errors/timeouts
-[FAIL] Mean-latency crossover identified (N/A connections)
-[FAIL] Throughput crossover identified (N/A connections)
-[FAIL] 250-connection comparison available
-[FAIL] Five independent runs available for each condition
+[PASS] All requested benchmark conditions completed (110/110)
+[FAIL] No unexpected errors/timeouts
+[PASS] Mean-latency crossover identified (150–200 connections)
+[PASS] Throughput crossover identified (150–200 connections)
+[PASS] 250-connection comparison available
+[PASS] Five independent runs available for each condition
 
 Neutral Conclusion:
 This validation test was successfully executed. The results confirm that Stateless authentication yields sub-millisecond latencies and higher throughput at lower concurrency levels. As concurrent connections scale past the crossover regions, cryptographic CPU limits cause local JWT verification latency to increase sharply. Stateful authentication (simulating a 10ms database connection latency) scales throughput steadily by utilizing asynchronous database yield loops, maintaining superior tail latency stability at high concurrency levels.
