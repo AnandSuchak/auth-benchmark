@@ -1,0 +1,81 @@
+================================================================================
+REPRODUCIBILITY VALIDATION BENCHMARK REPORT
+================================================================================
+Generated on: Thu, 27 Aug 2026 05:43:04 GMT
+Server URL: http://localhost:3001
+Session Store Mock Latency: 10 ms (Stateful) | 0 ms (JWT)
+Runs per condition: 5 independent runs
+Warm-up: 15s | Measurement: 30s | Cooldown: 5s
+
+💻 SYSTEM PROFILE:
+Node.js Version: v24.11.1
+Platform: win32 10.0.26200 (x64)
+CPU Model: 12th Gen Intel(R) Core(TM) i5-1240P
+Total RAM: 15.68 GB
+
+--------------------------------------------------------------------------------
+1. REPRODUCIBILITY COMPARISON MATRIX
+--------------------------------------------------------------------------------
+Comparing current validation RPS against previous final-validation data.
+Discrepancy is considered "reproducible" (YES) if the previous mean falls within 
+the new 95% Confidence Interval or if the absolute deviation is less than 10%.
+
+Conns | Arch     | New RPS Mean  | New 95% CI bounds  | Previous RPS  | Discrepancy | Reproducible
+--------------------------------------------------------------------------------------------------
+175   | JWT      |         3501 | [3379, 3623]       |          1930 | +     81.4% | NO
+175   | STATEFUL |         7951 | [7721, 8180]       |          3559 | +    123.4% | NO
+190   | JWT      |         4541 | [1667, 7414]       |          3077 | +     47.6% | YES
+190   | STATEFUL |         8713 | [8460, 8967]       |          7639 | +     14.1% | NO
+195   | JWT      |         3580 | [3505, 3655]       |          2884 | +     24.2% | NO
+195   | STATEFUL |         9165 | [8520, 9811]       |          8724 | +      5.1% | YES
+200   | JWT      |         3361 | [3180, 3542]       |          2920 | +     15.1% | NO
+200   | STATEFUL |         9084 | [8774, 9394]       |          8026 | +     13.2% | NO
+205   | JWT      |         5194 | [2367, 8022]       |          3089 | +     68.1% | YES
+205   | STATEFUL |         9123 | [9020, 9226]       |          7701 | +     18.5% | NO
+210   | JWT      |         3475 | [3154, 3796]       |          3193 | +      8.8% | YES
+210   | STATEFUL |         9248 | [9111, 9385]       |          4129 | +    124.0% | NO
+225   | JWT      |         4779 | [957, 8600]        |          2265 | +    111.0% | YES
+225   | STATEFUL |         9936 | [8321, 11551]      |          3805 | +    161.1% | NO
+
+--------------------------------------------------------------------------------
+2. ERROR & DIAGNOSTIC LOGS
+--------------------------------------------------------------------------------
+Total validation runs with active connection issues or request failures: 0
+
+✅ All runs completed successfully with zero connection errors, timeouts, or non-2xx responses.
+
+--------------------------------------------------------------------------------
+3. STATISTICAL SUMMARY TABLE
+--------------------------------------------------------------------------------
+Conns | Method   | Mean RPS   | RPS 95% CI         | Mean Latency | Latency 95% CI     | Mean p50   | Mean p95   | Mean p99   | CPU %  | EL p99
+---------------------------------------------------------------------------------------------------------------------------------------------
+175   | JWT      |       3501 | [3379, 3623]       |      49.5 ms | [47.8, 51.2]       |    48.1 ms |    99.6 ms |   119.7 ms | 20.9% |  10.55 ms
+175   | STATEFUL |       7951 | [7721, 8180]       |      21.5 ms | [20.9, 22.2]       |    21.0 ms |    33.2 ms |    38.7 ms | 28.4% |  22.02 ms
+180   | JWT      |       4760 | [889, 8631]        |      45.8 ms | [25.5, 66.2]       |    46.1 ms |    88.0 ms |   105.5 ms | 31.7% |  12.47 ms
+180   | STATEFUL |       9012 | [6975, 11048]      |      19.9 ms | [16.2, 23.7]       |    19.3 ms |    30.3 ms |    38.9 ms | 47.5% |  21.16 ms
+185   | JWT      |       3417 | [3256, 3577]       |      53.7 ms | [51.2, 56.2]       |    53.4 ms |   107.3 ms |   133.4 ms | 21.6% |  10.67 ms
+185   | STATEFUL |       8612 | [8344, 8880]       |      21.0 ms | [20.3, 21.7]       |    20.5 ms |    31.9 ms |    38.3 ms | 33.6% |  21.23 ms
+190   | JWT      |       4541 | [1667, 7414]       |      47.3 ms | [28.9, 65.8]       |    47.6 ms |    88.5 ms |   107.2 ms | 30.5% |  12.40 ms
+190   | STATEFUL |       8713 | [8460, 8967]       |      21.3 ms | [20.7, 22.0]       |    21.0 ms |    32.0 ms |    39.4 ms | 33.4% |  21.01 ms
+195   | JWT      |       3580 | [3505, 3655]       |      53.9 ms | [52.8, 55.1]       |    49.5 ms |   121.1 ms |   152.0 ms | 20.1% |  10.54 ms
+195   | STATEFUL |       9165 | [8520, 9811]       |      20.8 ms | [19.4, 22.2]       |    20.4 ms |    31.1 ms |    38.2 ms | 35.9% |  20.83 ms
+200   | JWT      |       3361 | [3180, 3542]       |      59.0 ms | [56.0, 62.1]       |    61.5 ms |   111.9 ms |   134.2 ms | 23.4% |  10.78 ms
+200   | STATEFUL |       9084 | [8774, 9394]       |      21.5 ms | [20.8, 22.3]       |    21.3 ms |    30.6 ms |    37.2 ms | 34.6% |  18.95 ms
+205   | JWT      |       5194 | [2367, 8022]       |      45.0 ms | [23.3, 66.7]       |    41.9 ms |   100.2 ms |   132.9 ms | 35.0% |  12.64 ms
+205   | STATEFUL |       9123 | [9020, 9226]       |      22.0 ms | [21.7, 22.2]       |    21.7 ms |    31.5 ms |    37.2 ms | 33.2% |  18.00 ms
+210   | JWT      |       3475 | [3154, 3796]       |      60.2 ms | [54.4, 66.0]       |    61.7 ms |   123.3 ms |   154.4 ms | 22.4% |  10.70 ms
+210   | STATEFUL |       9248 | [9111, 9385]       |      22.2 ms | [21.9, 22.6]       |    21.7 ms |    31.9 ms |    39.4 ms | 36.2% |  17.30 ms
+215   | JWT      |       5384 | [2152, 8615]       |      46.9 ms | [22.7, 71.1]       |    44.9 ms |    96.9 ms |   116.0 ms | 36.7% |  12.88 ms
+215   | STATEFUL |       9299 | [8993, 9604]       |      22.6 ms | [21.9, 23.4]       |    22.3 ms |    31.3 ms |    37.5 ms | 34.5% |  16.85 ms
+220   | JWT      |       3490 | [3137, 3843]       |      62.8 ms | [56.9, 68.7]       |    68.6 ms |   118.0 ms |   141.6 ms | 22.6% |  10.54 ms
+220   | STATEFUL |       9246 | [9118, 9374]       |      23.3 ms | [23.0, 23.6]       |    23.3 ms |    32.4 ms |    39.1 ms | 31.0% |  16.53 ms
+225   | JWT      |       4779 | [957, 8600]        |      56.8 ms | [31.9, 81.8]       |    59.1 ms |   110.8 ms |   136.8 ms | 32.1% |  12.51 ms
+225   | STATEFUL |       9936 | [8321, 11551]      |      22.4 ms | [19.3, 25.6]       |    22.1 ms |    32.3 ms |    39.1 ms | 44.9% |  17.86 ms
+
+================================================================================
+REPRODUCIBILITY CHECKLIST STATUS
+================================================================================
+[PASS] All validation benchmark conditions executed (110/110)
+[PASS] Zero errors, timeouts, or non-2xx responses detected
+[FAIL] Statistical reproducibility confirmed across all compared points
+[PASS] Five independent runs verified per configuration

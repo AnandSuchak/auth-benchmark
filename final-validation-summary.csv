@@ -1,5 +1,0 @@
-concurrency,architecture,runs,rps_mean,rps_sd,mean_latency_mean,mean_latency_sd,p99_mean,p99_sd,cpu_mean,cpu_sd,event_loop_p99_mean,event_loop_p99_sd,total_errors
-190,jwt,2,9748.00,175.36,18.93,0.35,45.05,10.03,32.29,6.03,10.57,0.21,0
-190,stateful,2,11238.00,438.41,16.43,0.70,32.98,0.10,35.99,42.13,19.08,2.68,0
-195,jwt,2,9700.00,492.15,19.59,1.01,32.59,9.20,33.44,3.34,11.15,1.09,0
-195,stateful,2,11398.00,200.82,16.66,0.36,34.90,3.42,11.95,0.64,18.28,1.30,0
