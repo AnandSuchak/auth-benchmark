@@ -1,6 +1,6 @@
 # Performance and Tail-Latency Trade-offs Between Stateless JWT and Stateful Session Authentication
 
-[![Paper](https://img.shields.io/badge/Paper-TechRxiv-blue.svg)](#) *(Note: Add your TechRxiv link here once published)*
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22127858.svg)](https://doi.org/10.5281/zenodo.22127858)
 [![Node.js](https://img.shields.io/badge/Node.js-v24.11.1-green.svg)](https://nodejs.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
